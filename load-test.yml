@@ -1,0 +1,27 @@
+config:
+  target: "http://localhost:4000"
+  phases:
+    - duration: 30
+      arrivalRate: 20
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Candidate workflow"
+    flow:
+      - get:
+          url: "/jobs"
+      - get:
+          url: "/candidates"
+      - post:
+          url: "/jobs"
+          json:
+            title: "New Test Job"
+            status: "active"
+      - put:
+          url: "/candidates/1"
+          json:
+            stage: "Interview"
+      - delete:
+          url: "/assessments/1"
