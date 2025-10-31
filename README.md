@@ -1,48 +1,42 @@
 # TalentFlow
-TalentFlow is a modern, feature-rich hiring platform designed for streamlined recruitment management. Built with React.js, Vite, and Tailwind CSS, it offers a responsive UI, light/dark mode, and robust analytics—all powered by mock APIs for rapid prototyping and testing.
 
-## Table of Contents
+TalentFlow is a modern, full-featured hiring platform built to simplify and streamline recruitment management.
+Developed with React.js, Vite, and Tailwind CSS, it delivers a fast, responsive UI with light/dark mode, robust analytics, and seamless navigation — all powered by mock APIs for rapid prototyping and realistic testing.
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Setup Instructions](#setup-instructions)
-- [Architecture](#architecture)
-- [Technical Decisions](#technical-decisions)
-- [Known Issues](#known-issues)
-- [Future Improvements](#future-improvements)
-- [Contributing](#contributing)
-- [License](#license)
+#  🚀 Key Features
 
-## Features
+Dashboard Overview – Centralized metrics and insights for jobs and candidates.
 
-- **Dashboard**: Overview of jobs and key hiring metrics.
-- **Job Management**: Create, view, and manage job listings.
-- **Candidate Tracking**: Visualize candidate progress through all hiring stages.
-- **Assessments**: Build and take assessments for job applicants.
-- **Analytics**: Interactive charts (pipeline, velocity, scores, top jobs) with CSV export.
-- **Theme Toggle**: Seamless light/dark mode, persisted in `localStorage`.
-- **Global Search**: Search jobs, candidates, and assessments.
-- **Responsive Design**: Mobile-friendly UI using Tailwind CSS.
-- **Mocked API**: MSW simulates backend endpoints for development.
+Job Management – Create, view, and manage job listings efficiently.
 
-## Tech Stack
+Candidate Tracking – Visualize candidate progress across multiple hiring stages.
 
-- **Frontend**: React.js (18+), TypeScript
-- **Build Tool**: Vite
-- **Routing**: React Router (6+)
-- **Styling**: Tailwind CSS (OKLCH colors, dark mode)
-- **UI Components**: Shadcn/UI
-- **Icons**: Lucide React
-- **Charts**: Recharts
-- **API Mocking**: MSW (Mock Service Worker)
-- **Theme Management**: Custom React Context
-- **Utilities**: `clsx`, `tailwind-merge`
-- **Linting/Formatting**: ESLint, Prettier
+Assessments – Build, assign, and take custom job assessments.
 
-## Project Structure
+Analytics & Insights – Interactive charts for pipeline, velocity, and scores with CSV export.
 
-```
+Light/Dark Mode – Theme toggle with persistent state via localStorage.
+
+Global Search – Instantly search jobs, candidates, and assessments.
+
+Responsive UI – Fully mobile-friendly with Tailwind CSS.
+
+Mock Backend – Powered by MSW (Mock Service Worker) for realistic API simulation.
+
+# 🧱 Tech Stack
+Layer	Technologies
+Frontend	React.js (18+), TypeScript
+Build Tool	Vite
+Routing	React Router (v6+)
+Styling	Tailwind CSS (OKLCH colors, dark mode)
+UI Components	Shadcn/UI
+Icons	Lucide React
+Charts	Recharts
+Mock API	MSW
+Utilities	clsx, tailwind-merge
+Code Quality	ESLint, Prettier
+
+# 📂 Project Structure
 /ENTNT/
 ├── public/
 │   ├── index.html
@@ -73,131 +67,134 @@ TalentFlow is a modern, feature-rich hiring platform designed for streamlined re
 ├── package.json
 ├── .env
 └── README.md
-```
 
-## Setup Instructions
+# ⚙️ Setup Guide
+1. Prerequisites
 
-### Prerequisites
+Node.js v18+
 
-- **Node.js**: v18 or higher
-- **npm**: v9 or higher
+npm v9+
 
-### Installation
+2. Installation
+git clone <repository-url>
+cd ENTNT
+npm install
 
-1. **Clone the Repository**
-  ```bash
-  git clone <repository-url>
-  cd ENTNT
-  ```
+3. Environment Setup
 
-2. **Install Dependencies**
-  ```bash
-  npm install
-  ```
+Create a .env file in the root directory:
 
-3. **Set Up Environment**
-  - Create a `.env` file in the root:
-    ```
-    VITE_API_URL=http://localhost:5173
-    ```
+VITE_API_URL=http://localhost:5173
 
-4. **Initialize MSW**
-  ```bash
-  npx msw init public/ --save
-  ```
+4. Initialize Mock Service Worker
+npx msw init public/ --save
 
-5. **Run the Development Server**
-  ```bash
-  npm run dev
-  ```
-  Open [http://localhost:5173](http://localhost:5173) in your browser.
+5. Run the Development Server
+npm run dev
 
-6. **Build for Production**
-  ```bash
-  npm run build
-  npm run preview
-  ```
 
-### Scripts
+Then open: http://localhost:5173
 
-- `npm run dev`: Start the development server
-- `npm run build`: Build for production
-- `npm run preview`: Preview the production build
-- `npm run lint`: Run ESLint
-- `npm run format`: Run Prettier
+6. Build for Production
+npm run build
+npm run preview
 
-## Architecture
+# 🧩 Available Scripts
+Command	Description
+npm run dev	Start the development server
+npm run build	Build for production
+npm run preview	Preview the production build
+npm run lint	Run ESLint checks
+npm run format	Format code using Prettier
+# 🏗️ Architecture Overview
+Frontend
 
-### Frontend
+Modular, component-driven structure using React + TypeScript.
 
-- **React.js**: Component-based architecture with TypeScript.
-- **React Router**: Client-side routing (`/`, `/jobs`, `/candidates`, `/assessments`, `/analytics`).
-- **ThemeProvider**: Custom React Context for theme, toggling Tailwind’s `dark` class and persisting in `localStorage`.
-- **Shadcn/UI**: Reusable, accessible UI components.
-- **Tailwind CSS**: Utility-first styling with OKLCH color support and dark mode.
-- **Recharts**: Analytics charts (Bar, Pie, Line).
+Routing handled by React Router (/, /jobs, /candidates, /assessments, /analytics).
 
-### Data Layer
+ThemeProvider with React Context manages light/dark mode, synced via Tailwind classes.
 
-- **DatabaseService**: Mock data layer (`src/lib/db.ts`) for jobs, candidates, assessments.
-- **MSW**: Simulates API endpoints with realistic delays and error rates.
-- **Analytics**: Local processing for pipeline, velocity, scores, and top jobs.
+Data Layer
 
-### Key Components
+DatabaseService (src/lib/db.ts) handles mock job, candidate, and assessment data.
 
-- **Navigation**: Responsive navbar with routing and theme toggle.
-- **AnalyticsPage**: Visualizes metrics and exports CSV.
-- **ThemeProvider**: Manages and persists theme state.
+MSW simulates backend APIs with controlled latency and error rates.
 
-## Technical Decisions
+Analytics (pipeline, velocity, scores) computed client-side for speed.
 
-- **Vite**: Chosen over CRA for faster builds and simpler config.
-- **Tailwind CSS (OKLCH)**: Utility-first, accessible, and consistent styling.
-- **Custom ThemeProvider**: React Context for theme, no Next.js dependency.
-- **MSW**: Mock APIs for rapid frontend development.
-- **Recharts**: Lightweight, theme-aware analytics.
-- **Client-Side CSV Export**: Uses Blob API for analytics data export.
-- **Shadcn/UI**: Accessible, customizable UI components.
+Core Components
 
-## Known Issues
+Navigation – Responsive header with theme toggle.
 
-- **Tailwind CSS Resolution**:  
-  If you see `Can't resolve 'tailwindcss'`, clear cache:
-  ```bash
-  - **Kanban Board Drag-and-Drop Integration**:  
-    Integrating drag-and-drop functionality for the Kanban board is in progress. While the UI supports moving cards between columns, updating the underlying data state is not yet fully implemented. Ensure that state changes are properly handled and persisted when cards are moved. Further enhancements are planned to synchronize UI interactions with the mock data layer.
-  npm install
-  ```
-  Ensure `vite.config.ts` includes `@tailwindcss/vite`.
+AnalyticsPage – Data visualizations with CSV export.
 
-- **Mock Data Limitations**:  
-  Analytics use static mock data. For dynamic metrics, extend `DatabaseService`.
+ThemeProvider – Handles global theming and persistence.
 
-## Future Improvements
+💡 Technical Highlights
 
-- Integrate with a real backend (e.g., Node.js/Express).
-- Link candidates to jobs/assessments for dynamic analytics.
-- Add toast notifications (e.g., `react-toastify`) for user feedback.
-- Improve accessibility (ARIA, Lighthouse audits).
-- Implement server-side pagination for large datasets.
+⚡ Vite for blazing-fast builds and HMR.
 
-## Contributing
+🎨 Tailwind CSS (OKLCH) for accessible, consistent theming.
 
-1. Fork the repository.
-2. Create a feature branch:
-  ```bash
-  git checkout -b feature/xyz
-  ```
-3. Commit your changes:
-  ```bash
-  git commit -m "Add feature xyz"
-  ```
-4. Push to your branch:
-  ```bash
-  git push origin feature/xyz
-  ```
-5. Open a pull request.
+🧠 Custom Theme Context for persistent dark mode.
 
-## License
+🧪 MSW for realistic, isolated API testing.
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.# ENTNT
+📊 Recharts for interactive, theme-aware analytics.
+
+📂 CSV Export via Blob API for instant data downloads.
+
+🧱 Shadcn/UI for composable, accessible UI building blocks.
+
+# 🐞 Known Issues
+
+Kanban Drag-and-Drop:
+Dragging between columns is supported, but state persistence is under development.
+Ensure the data state updates correctly when cards move.
+
+Mock Data Limitation:
+Analytics currently rely on static mock data. For real-time analytics, extend DatabaseService.
+
+Tailwind Resolution Error:
+If you see Can't resolve 'tailwindcss', try:
+
+npm install
+
+
+and ensure vite.config.ts imports @tailwindcss/vite.
+
+# 🔮 Planned Enhancements
+
+Integration with a real backend (Node.js/Express).
+
+Dynamic linking of candidates and assessments per job.
+
+Toast notifications (e.g., react-toastify) for feedback.
+
+Improved accessibility (ARIA, Lighthouse).
+
+Server-side pagination for large datasets.
+
+# 🤝 Contributing
+
+Fork the repo
+
+Create a feature branch:
+
+git checkout -b feature/your-feature
+
+
+Commit and push your changes:
+
+git commit -m "Add new feature"
+git push origin feature/your-feature
+
+
+Open a Pull Request 🚀
+
+# 📜 License
+
+Licensed under the MIT License.
+See the LICENSE
+ file for details.
