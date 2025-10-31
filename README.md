@@ -67,7 +67,6 @@ Code Quality	ESLint, Prettier
 ├── package.json
 ├── .env
 └── README.md
-
 # ⚙️ Setup Guide
 1. Prerequisites
 
